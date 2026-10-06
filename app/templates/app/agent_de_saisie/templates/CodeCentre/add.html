@@ -1,4 +1,4 @@
-{% extends 'app/receptioniste/layouts/default.html' %}
+{% extends 'app/agent_de_saisie/layouts/default.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
 {% load crispy_forms_field %}
@@ -21,48 +21,29 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header py-3">
-                                <h2 class="m-0 font-weight-bold text-primary">Demande de documents</h2>
+                                <h2 class="m-0 font-weight-bold text-primary">Nouveau Code Centre</h2>
                             </div>
-                            {% comment %} <div class="card-body">
+                            <div class="card-body">
                                 <!-- Vertical Form -->
-                                <form action="{% url 'demandes_store' %}" method="post">
-                                    {% csrf_token %} 
+                                <form action="{% url 'code_centres_store' %}" method="POST">
+                                    {% csrf_token %}
                                     <div class="col-12">
-                                        {{ form.nom|as_crispy_field }}
+                                        {{ form.province|as_crispy_field }}
                                       </div>
                                   <div class="col-12">
-                                    {{ form.prenom|as_crispy_field }}
-                                  </div>
-                                  <div class="col-12">
-                                    {{ form.email|as_crispy_field }}
-                                  </div>
-                                  <div class="col-12">
-                                    {{ form.gender|as_crispy_field }}
+                                    {{ form.nom|as_crispy_field }}
                                   </div>
                                   <div class="col-12">
                                     {{ form.code_centre|as_crispy_field }}
                                   </div>
-                                  <div class="col-12">
-                                    {{ form.code_participation|as_crispy_field }}
-                                  </div>
-                                  <div class="col-12">
-                                    {{ form.code_ecole|as_crispy_field }}
-                                  </div>
-                                  <div class="col-12">
-                                    {{ form.type_documents|as_crispy_field }}
-                                  </div>
-                                  <div class="col-12">
-                                    {{ form.edition|as_crispy_field }}
-                                  </div>
                                   <div class="text-center">
                                     <br/>
                                     <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                    <button type="reset" class="btn btn-outline-primary">Réinitialiser</button>
                                   </div>
                                 </form><!-- Vertical Form -->
                   
                               </div>
-                        </div> {% endcomment %}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -11,15 +11,7 @@ class Laureat(models.Model):
     
     
     def __str__(self) -> str:
-        return self.etudiant.nom+" "+self.etudiant.prenom+" Exetat : "+str(self.exetat.edition)+" Code centre : "+str(self.code_centre)+" Code Participation : "+str(self.code_participation)+" Code école : "+str(self.code_ecole)+" "+str(self.edition)
+        return self.etudiant.nom+" "+self.etudiant.prenom+" Exetat : "+str(self.exetat.edition)+" Code centre : "+str(self.code_centre)+" Code Participation : "+str(self.code_participation)+" Code école : "+str(self.code_ecole)+" "+str(self.annee)
     
-    
-    class Meta:
-        constraints = [
-            models.UniqueConstraint
-            (
-                fields = ['code_centre', 'code_participation', 'code_ecole', 'exetat'],
-                name = 'unique.laureat'
-            )
-        ]
+
     

@@ -1,0 +1,84 @@
+{% extends 'app/admin/layouts/default.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+<!--**********************************
+    Content body start
+***********************************-->
+
+<button onClick="printFun()" type="button" class="btn btn-danger btn-flat m-b-10 m-l-5">PDF</button>
+<div id="section-to-print">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <h6 style="text-align:center;">Données de Filtrage</h6>
+            <div class="alert alert-primary">
+            <p style ="color:black";>{{ resum }}</p>
+            </div>
+        </div>
+        <!-- /# card -->
+    </div>
+</div>
+<div class="row">
+    {% comment %} <h3>{{ households }}</h3> {% endcomment %}
+    <h3>{% regroup demandes by date_demande as demandes_groups %}</h3>
+    <div class="col-lg-12">
+        <div class="card">
+            <h6 style="text-align:center;">Du  {{ start_date }}  Au  {{ end_date }}</h6>
+            {% for date, demandes_group in demandes_groups %}
+            <h5>{{ date }}</h5>
+            <div class="bootstrap-data-table-panel">
+                <div class="table-responsive">
+                    <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Province</th>
+                                <th>Code centre</th>
+                                <th>Code ecole</th>
+                                <th>Code participation</th>
+                                <th>Type documents</th>
+                                <th>Date demande</th>
+                                <th>annee</th>
+                                <th>Etat</th>
+                                <th>Date delivrance</th>
+                              </tr>
+                        </thead>
+                        <tbody>
+                            {% for rendez_vous in demandes %}
+                            <tr>
+                              <td>{{ forloop.counter }}</td>
+                              <td>{{ rendez_vous.nom }}</td>
+                              <td>{{ rendez_vous.prenom }}</td>
+                              <td>{{ rendez_vous.province }}</td>
+                              <td>{{ rendez_vous.code_ecole.code_centre }}</td>
+                              <td>{{ rendez_vous.code_ecole.ecole }}</td>
+                              <td>{{ rendez_vous.code_participation }}</td>
+                              <td>{{ rendez_vous.type_documents }}</td>
+                              <td>{{ rendez_vous.date_demande }}</td>
+                              <td>{{ rendez_vous.annee }}</td>
+                              <td>{{ rendez_vous.etat}}</td>
+                              <td>{{ rendez_vous.date_delivrance }}</td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- /# card --> 
+        </div>
+    </div>
+</div>
+</div>
+<!-- #/ container -->
+</div>
+<script>
+function printFun() {
+    window.print();
+}
+</script>
+{% endblock %}

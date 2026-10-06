@@ -10,3 +10,7 @@ from .utilisateur_role_form import UserEditForm
 from .etudiant_form import EtudiantForm
 from .laureat_form import LaureatForm
 from .rendez_vous_form import Rendez_vousForm
+from .code_centre_form import Code_centreForm
+from .code_ecole_form import Code_ecoleForm
+from .code_participation_form import Code_participationForm
+from .laureats_form import LaureatsForm

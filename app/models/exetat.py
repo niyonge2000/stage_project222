@@ -5,20 +5,20 @@ from app.models import Section_cours
 
 class Exetat(models.Model):
     section_cours = models.ForeignKey(Section_cours, on_delete=models.CASCADE)
-    edition = models.PositiveIntegerField("Edition")
+    annee = models.PositiveIntegerField("Edition")
     
     
     def __str__(self) -> str:
-        return str(self.edition)
+        return str(self.annee)
     
     
-    class Meta:
-        constraints = [
-            models.UniqueConstraint
-            (
-                fields = ['edition'],
-                name = 'unique.exetat'
-            )
-        ]
+    # class Meta:
+    #     constraints = [
+    #         models.UniqueConstraint
+    #         (
+    #             fields = ['edition'],
+    #             name = 'unique.exetat'
+    #         )
+    #     ]
     
     

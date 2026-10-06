@@ -28,6 +28,21 @@
                                 <form action="{% url 'utilisateurs_update' form.instance.pk %}" method="post">
                                     {% csrf_token %}
                                     <div class="col-12">
+                                        {{ form.first_name|as_crispy_field }}
+                                    </div>
+                                    <div class="col-12">
+                                        {{ form.last_name|as_crispy_field }}
+                                    </div>
+                                    <div class="col-12">
+                                        {{ form.email|as_crispy_field }}
+                                    </div>
+                                    <div class="col-12">
+                                        {{ form.genre|as_crispy_field }}
+                                    </div>
+                                    <div class="col-12">
+                                        {{ form.telephone|as_crispy_field }}
+                                    </div>
+                                    <div class="col-12">
                                         {{ form.role|as_crispy_field }}
                                     </div>
                                     <div class="text-center">

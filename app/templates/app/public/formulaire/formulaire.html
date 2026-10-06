@@ -16,7 +16,7 @@
 
       <div class="col-lg-5 col-md-7">
         
-        <form action="{% url 'rendez_vous_store' %}" method="post">
+        <form action="{% url 'rendez_vous_store' %}" method="POST">
           {% csrf_token %}
           <div class="form-group">
             {{ form.nom|as_crispy_field }}
@@ -30,24 +30,52 @@
           <div class="form-group mt-3">
             {{ form.gender|as_crispy_field }}
           </div>
-          <div class="form-group mt-3">
-            {{ form.code_centre|as_crispy_field }}
+          <div class="col-12">
+            <label>Province</label>
+                <Select name='province' id="id_province" class='form-control'>
+                    <option value="">--------</option>
+                    {% for province in provinces %}
+                    <option value="{{ province.id }}">{{ province.nom }}</option>
+                    {% endfor %}
+                </select>
+          </div>
+            <div class="col-12">
+                <label>Code centre</label>
+                    <Select name='code_centre' id="id_code_centre" class='form-control'>
+                        <option value="">--------</option>
+                        {% for code_centre in code_centres %}
+                        <option value="{{code_centre.id}}">{{code_centre.nom}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+            <div class="col-12">
+              <label>Code ecole</label>
+                  <Select name='code_ecole' id="id_code_ecole" class='form-control'>
+                      <option value="">--------</option>
+                      {% for code_ecole in code_ecoles %}
+                      <option value="{{code_ecole.id}}">{{code_ecole.ecole}}</option>
+                      {% endfor %}
+                  </select>
           </div>
           <div class="form-group mt-3">
             {{ form.code_participation|as_crispy_field }}
           </div>
           <div class="form-group mt-3">
-            {{ form.code_ecole|as_crispy_field }}
-          </div>
-          <div class="form-group mt-3">
             {{ form.type_documents|as_crispy_field }}
           </div>
-          <div class="form-group mt-3">
-            {{ form.edition|as_crispy_field }}
-          </div>
-          <div class="my-3">
-            {% comment %} <div class="loading">Loading</div>
-            <div class="error-message"></div> {% endcomment %}
+          <div class="col-12">
+            <label>Edition:</label>
+            <select name="annee" id="annee" class="form-control"></select>
+            <script>
+              const selectAnnee = document.getElementById('annee');
+              const anneeActuelle = new Date().getFullYear();
+              for (let annee = 1999; annee <= anneeActuelle; annee++) {
+                const option = document.createElement('option');
+                option.value = annee;
+                option.text = annee;
+                selectAnnee.appendChild(option);
+              }
+            </script>
           </div>
           <div class="text-center"><button type="submit">Envoyer</button></div>
         </form>
@@ -57,5 +85,7 @@
 
   </div>
 </section><!-- End Contact Us Section -->
+
+
 
 {% endblock %} 

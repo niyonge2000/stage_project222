@@ -3,8 +3,8 @@
  <div class="nk-sidebar">           
     <div class="nk-nav-scroll">
         <ul class="metismenu" id="menu">
-            
-            <li class="nav-label">cours et section</li>
+            <li class="nav-label"><a href="{% url 'agent_de_saisie_home' %}">Accueil</a></li>
+   
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-speedometer menu-icon"></i><span class="nav-text">Cours</span>
@@ -32,7 +32,6 @@
                     <li><a href="{% url 'cours_sections_index' %}">Afficher</a></li>
                 </ul>
             </li>
-            <li class="nav-label">Etudiant & Laureat </li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-speedometer menu-icon"></i><span class="nav-text">Etudiant</span>
@@ -51,12 +50,43 @@
                     <li><a href="{% url 'laureats_index' %}">Afficher</a></li>
                 </ul>
             </li>
-            
             <li>
-                <a href="{% url 'user_logout' %}" aria-expanded="false">
-                    <i class="icon-badge menu-icon"></i><span class="nav-text">Se deconnecter</span>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Code centre</span>
                 </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'code_centres_add' %}">Enregistrer</a></li>
+                    <li><a href="{% url 'code_centres_index' %}">Afficher</a></li>
+                </ul>
             </li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Code Ecole</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'code_ecoles_add' %}">Enregistrer</a></li>
+                    <li><a href="{% url 'code_ecoles_index' %}">Afficher</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Code Participation</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'code_participations_add' %}">Enregistrer</a></li>
+                    <li><a href="{% url 'code_participations_index' %}">Afficher</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon-speedometer menu-icon"></i><span class="nav-text">Laureates</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'laureates_add' %}">Enregistrer</a></li>
+                    <li><a href="{% url 'laureates_index' %}">Afficher</a></li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>

@@ -1,5 +1,6 @@
 from django.urls import path
-from app.views import home, admin,public, provinces,communes,zones,utilisateurs,exetats,cours,sections,cours_sections,etudiants,laureats,demandes, organisateur, agent_de_saisie, receptioniste, qrcode
+
+from app.views import home, admin,public, provinces,communes,laureates,code_participations,zones,code_centres,code_ecoles,utilisateurs,exetats,cours,sections,cours_sections,etudiants,laureats,demandes, organisateur, agent_de_saisie, receptioniste, qrcode
 
 urlpatterns = [
     path('home/', home.index, name='home'),
@@ -12,6 +13,9 @@ urlpatterns = [
     # path('public/formulaire/', public.formulaire, name='public_formulaire'),
     path('public/formulaire/', public.add_formulaire, name='public_add_formulaire'),
     path('public/formulaire/store', public.store, name='rendez_vous_store'),
+    path('public/formulaire/getCodeCentre', public.getCodeCentre, name='demandes_getCodeCentre'),
+    path('public/formulaire/getCodeEcole', public.getCodeEcole, name='demandes_getCodeEcole'),
+    path('public/formulaire/getCodeParticipation', public.getCodeParticipation, name='demandes_getCodeParticipation'),
     
     
     path('admin/templates/provinces/', provinces.index, name='provinces_index'),
@@ -104,7 +108,37 @@ urlpatterns = [
     path('agent_de_saisie/templates/laureats/edit/<int:id>', laureats.edit, name='laureats_edit'),
     path('agent_de_saisie/templates/laureats/update/<int:id>', laureats.update, name='laureats_update'),
     path('agent_de_saisie/templates/laureats/delete/<int:id>', laureats.delete, name='laureats_delete'),
+
+
+    path('agent_de_saisie/templates/laureates/', laureates.index, name='laureates_index'),
+    path('agent_de_saisie/templates/laureates/add', laureates.add, name='laureates_add'),
+    path('agent_de_saisie/templates/laureates/store', laureates.store, name='laureates_store'),
+    path('agent_de_saisie/templates/laureates/edit/<int:id>', laureates.edit, name='laureates_edit'),
+    path('agent_de_saisie/templates/laureates/update/<int:id>', laureates.update, name='laureates_update'),
+    path('agent_de_saisie/templates/laureates/delete/<int:id>', laureates.delete, name='laureates_delete'),
+
+
+    path('agent_de_saisie/templates/CodeCentre/', code_centres.index, name='code_centres_index'),
+    path('agent_de_saisie/templates/CodeCentre/add', code_centres.add, name='code_centres_add'),
+    path('agent_de_saisie/templates/CodeCentre/store', code_centres.store, name='code_centres_store'),
+    path('agent_de_saisie/templates/CodeCentre/edit/<int:id>', code_centres.edit, name='code_centres_edit'),
+    path('agent_de_saisie/templates/CodeCentre/update/<int:id>', code_centres.update, name='code_centres_update'),
+    path('agent_de_saisie/templates/CodeCentre/delete/<int:id>', code_centres.delete, name='code_centres_delete'), 
     
+    path('agent_de_saisie/templates/CodeEcole/', code_ecoles.index, name='code_ecoles_index'),
+    path('agent_de_saisie/templates/CodeEcole/add', code_ecoles.add, name='code_ecoles_add'),
+    path('agent_de_saisie/templates/CodeEcole/store', code_ecoles.store, name='code_ecoles_store'),
+    path('agent_de_saisie/templates/CodeEcole/edit/<int:id>', code_ecoles.edit, name='code_ecoles_edit'),
+    path('agent_de_saisie/templates/CodeEcole/update/<int:id>', code_ecoles.update, name='code_ecoles_update'),
+    path('agent_de_saisie/templates/CodeEcole/delete/<int:id>', code_ecoles.delete, name='code_ecoles_delete'),   
+    
+    
+    path('agent_de_saisie/templates/CodeParticipation/', code_participations.index, name='code_participations_index'),
+    path('agent_de_saisie/templates/CodeParticipation/add', code_participations.add, name='code_participations_add'),
+    path('agent_de_saisie/templates/CodeParticipation/store', code_participations.store, name='code_participations_store'),
+    path('agent_de_saisie/templates/CodeParticipation/edit/<int:id>', code_participations.edit, name='code_participations_edit'),
+    path('agent_de_saisie/templates/CodeParticipation/update/<int:id>', code_participations.update, name='code_participations_update'),
+    path('agent_de_saisie/templates/CodeParticipation/delete/<int:id>', code_participations.delete, name='code_participations_delete'),   
     
     #receptioniste
     path('receptioniste/home/', receptioniste.index, name='receptioniste_home'),
@@ -112,9 +146,11 @@ urlpatterns = [
     path('receptioniste/templates/demandes/', demandes.index, name='demandes_index'),
     path('receptioniste/templates/demandes/add', demandes.add, name='demandes_add'),
     # path('receptioniste/templates/demandes/store', demandes.store, name='demandes_store'),
-    path('receptioniste/templates/demandes/edit/<int:id>', demandes.edit, name='demandes_edit'),
-    path('receptioniste/templates/demandes/update/<int:id>', demandes.update, name='demandes_update'),
-    path('receptioniste/templates/demandes/delete/<int:id>', demandes.delete, name='demandes_delete'),
+    # path('receptioniste/templates/demandes/edit/<int:id>', demandes.edit, name='demandes_edit'),
+    path('receptioniste/templates/demandes/approuver<int:id>', demandes.ApprouverDemande, name='demandes_ApprouverDemande'),
+    path('receptioniste/templates/demandes/rejeter/<int:id>', demandes.RejeterDemande, name='demandes_RejeterDemande'),
+    path('receptioniste/templates/demandes/getEdition', demandes.getEdition, name='demandes_getEdition'),
+    
     
     
     #report_receptioniste affiche tous les infos demandé par l'etudiant
@@ -122,6 +158,11 @@ urlpatterns = [
     path('receptioniste/reports/report_filter_demande/',receptioniste.report_filter_demande,name='report_filter_demande'),
     path('receptioniste/reports/demande_filter_stab/',receptioniste.demande_filter_stab,name='demande_filter_stab'),
     
+    #report_admin affiche tous les demandes recu dans un mois
+    
+    path('admin/reports/report_filter_demande/',admin.report_filter_demande,name='report_filter_demande'),
+    path('admin/reports/demande_filter_stab/',admin.demande_filter_stab,name='demande_filter_stab'),
+    path('admin/reports/demande_filter_mtab/', admin.demande_filtered_mtab, name='demande_filter_mtab'),
     
 ]
     

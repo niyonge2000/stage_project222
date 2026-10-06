@@ -17,3 +17,8 @@ from .demandes import *
 from .public import *
 from .mailsend import *
 from .qrcode import *
+from .code_centres import *
+from .code_ecoles import *
+from .code_participations import *
+from .laureates import *
+from .rejetermail import *

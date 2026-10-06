@@ -18,12 +18,12 @@
                   <div class="col-12">
                       <div class="card">
                           <div class="card-body">
-                              <h2 class="card-title">Demande de documents</h2>
-                              <div class="card-header py-3">
-                                <a href="#" class="btn btn-primary"
-                                  ></a
+                              <h2 class="card-title">Demande</h2>
+                              {% comment %} <div class="card-header py-3">
+                                <a href="{% url 'exetats_add' %}" class="btn btn-primary"
+                                  >Nouvelle edition</a
                                 >
-                              </div>
+                              </div> {% endcomment %}
                                {% comment %} {% if messages %}
                                {% for message in messages %} 
                                <p class="alert alert-success w-100 h-100">{{ message }} </p>
@@ -48,14 +48,16 @@
                                           <th>Nom</th>
                                           <th>Prenom</th>
                                           <th>Email</th>
-                                          <th>gender</th>
-                                          <th>code_centre</th>
-                                          <th>code_participation</th>
-                                          <th>code_ecole</th>
-                                          <th>type_documents</th>
-                                          <th>edition</th>
-                                          <th>MODIFIER</th>
-                                          <th> SUPPRIMER </th>
+                                          <th>Genre</th>
+                                          <th>Province</th>
+                                          <th>Centre</th>
+                                          <th>Ecole</th>
+                                          <th>Code de Participation</th>
+                                          <th>Type documents</th>
+                                          <th>Edition</th>
+                                          <th>Etat</th>
+                                          <th>Approuver</th>
+                                          <th>Rejeter</th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -66,31 +68,35 @@
                                           <td>{{ rendez_vous.prenom }}</td>
                                           <td>{{ rendez_vous.email }}</td>
                                           <td>{{ rendez_vous.gender }}</td>
-                                          <td>{{ rendez_vous.code_centre }}</td>
+                                          <td>{{ rendez_vous.province }}</td>
+                                          <td>{{ rendez_vous.code_ecole.code_centre.nom }}</td>
+                                          <td>{{ rendez_vous.code_ecole.ecole }}</td>
                                           <td>{{ rendez_vous.code_participation }}</td>
-                                          <td>{{ rendez_vous.code_ecole }}</td>
                                           <td>{{ rendez_vous.type_documents }}</td>
-                                          <td>{{ rendez_vous.edition }}</td>
+                                          <td>{{ rendez_vous.annee }}</td>
+                                          <td>{{ rendez_vous.etat }}</td>
                                           <td>
                                             <a
-                                              href="{% url 'demandes_edit' rendez_vous.id %}"
+                                              href="{% url 'demandes_ApprouverDemande' rendez_vous.id %}"
                                               class="btn btn-primary"
-                                              >Modifier</a
+                                              >Approuver</a
                                             >
                                             </td>
                             
                                             <td>
                                             <form
-                                              action="{% url 'demandes_delete' rendez_vous.id %}"
+                                              action="{% url 'demandes_RejeterDemande' rendez_vous.id %}"
                                               method="post"
                                             >
                                               {% csrf_token %}
                                               <button
                                                 type="submit"
-                                                onclick="return confirm('Voulez vous vraiment supprimer votre demande ?')"
+                                                onclick="return confirm('Voulez vous vraiment rejeter cette demande?')"
                                                 class="btn btn-danger"
+
+                                                {% if rendez_vous.etat == 'Approuver' %}disabled{% endif %}
                                               >
-                                                Supprimer
+                                                Rejeter
                                               </button>
                                             </form>
                                           </td>

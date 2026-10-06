@@ -14,21 +14,23 @@ import qrcode
 import json
 import io
 from PIL import Image
-from datetime import datetime
+from datetime import datetime, timedelta
 from qrcode.constants import ERROR_CORRECT_L
 from app.models import Rendez_vous
 from reportlab.pdfgen import canvas
 
 
 def date_generate ():
-    dates = Rendez_vous.objects.values('date_delivrance')
-    for i in range(0,len(dates)):
-        date_delivrance = list(dates[i].values())[0]
+    # dates = Rendez_vous.objects.values('date_delivrance')
+    # for i in range(0,len(dates)):
+    #     date_delivrance = list(dates[i].values())[0]
     
-    occurance = Rendez_vous.objects.filter(date_delivrance = date_delivrance).count()
-    date = {}
-    date[date_delivrance]=occurance
-    return date
+    # occurance = Rendez_vous.objects.filter(date_delivrance = date_delivrance).count()
+    # date = {}
+    # date[date_delivrance]=occurance
+    # return date
+    date_delivrance = datetime.now() + timedelta(weeks=2)
+    return date_delivrance
 
 def test():
     dates = date_generate()
@@ -181,10 +183,9 @@ def test():
 #     email.send()
 
 
-def EmailConfirmation(request, email):
+def EmailConfirmation(request, email, date_delivrance):
    
-    dates = date_generate()
-    date_delivrance = list(dates.keys())[0]
+    date_delivrance = date_generate()
     # bets = Rendez_vous.objects.filter(email = mail)
     bets = Rendez_vous.objects.values('id')
     count = Rendez_vous.objects.all().count()
@@ -209,7 +210,7 @@ def EmailConfirmation(request, email):
     title = Paragraph("<u>Récépissé de Demande de document</u>", title_style)
     # Petit paragraphe en bas du titre
     paragraph_style = ParagraphStyle(name='ParagraphStyle', parent=styles['Normal'], alignment=1)
-    paragraph = Paragraph("<b>En réponse à votre demande de document, vous êtes invité(e) à vous présenter à notre Bureau de l'evaluation, les dates suivantes : {}</b>".format(date_delivrance), paragraph_style)
+    paragraph = Paragraph("<b>En réponse à votre demande de document, vous êtes invité(e) à vous présenter à notre Bureau, à la date suivante : {}</b>".format(date_delivrance), paragraph_style)
     
      # Informations sur l'utilisateur
     user_info_style = ParagraphStyle(name='UserInfoStyle', parent=styles['Normal'], alignment=0, spaceAfter=10)
@@ -256,7 +257,7 @@ def EmailConfirmation(request, email):
     # Envoyer l'e-mail avec le PDF en pièce jointe
     email = EmailMessage(
         subject="Confirmation de votre demande de document",
-        body='Votre demande a été envoyée avec succés, vous devez donc payer le montant exigés afin de récupérer votre document le {}.'.format(date_delivrance),
+        body='Votre demande a été approuvée, vous devez donc payer le montant exigés afin de récupérer votre document au date suivante: {}.'.format(date_delivrance),
         from_email=None,
         to=[email],
     )

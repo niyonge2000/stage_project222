@@ -32,8 +32,8 @@
                                                 <th>Email</th>
                                                 <th>Genre</th>
                                                 <th>Code centre</th>
-                                                <th>Code participation</th>
                                                 <th>Code ecole</th>
+                                                <th>Code participation</th>
                                                 <th>Type documents</th>
                                                 <th>Edition</th>
                                                 <th>Date demande</th>
@@ -48,11 +48,11 @@
                                                 <td>{{ rendez_vous.prenom }}</td>
                                                 <td>{{ rendez_vous.email }}</td>
                                                 <td>{{ rendez_vous.gender }}</td>
-                                                <td>{{ rendez_vous.code_centre }}</td>
+                                                <td>{{ rendez_vous.code_ecole.code_centre }}</td>
+                                                <td>{{ rendez_vous.code_ecole.ecole }}</td>
                                                 <td>{{ rendez_vous.code_participation }}</td>
-                                                <td>{{ rendez_vous.code_ecole }}</td>
                                                 <td>{{ rendez_vous.type_documents }}</td>
-                                                <td>{{ rendez_vous.edition }}</td>
+                                                <td>{{ rendez_vous.annee }}</td>
                                                 <td>{{ rendez_vous.date_demande }}</td>
                                                 <td>{{ rendez_vous.date_delivrance }}</td>
                                               </tr>

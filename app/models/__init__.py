@@ -7,5 +7,9 @@ from .section import *
 from .section_cours import *
 from .exetat import *
 from .laureat import *
-from .rendez_vous import *
 from .user import *
+from .code_centre import *
+from .code_ecole import *
+from .code_participation import *
+from .rendez_vous import *
+from .laureats import *

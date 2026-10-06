@@ -76,20 +76,20 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-6">
-                                            <label>Code_participation</label>
-                                            <select name='Code_participation' class='form-control'>
-                                                <option value="">----------</option>
-                                                {% for code_participation in code_participations %}
-                                                <option value="{{ code_participation }}">{{ code_participation }}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-6">
                                             <label>Code_ecole</label>
                                             <select name='Code_participation' class='form-control'>
                                                 <option value="">----------</option>
                                                 {% for code_ecole in code_ecoles %}
                                                 <option value="{{ code_ecole }}">{{ code_ecole }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Code_participation</label>
+                                            <select name='Code_participation' class='form-control'>
+                                                <option value="">----------</option>
+                                                {% for code_participation in code_participations %}
+                                                <option value="{{ code_participation }}">{{ code_participation }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
@@ -106,8 +106,8 @@
                                             <label>Edition</label>
                                             <select name='edition' class='form-control'>
                                                 <option value="">----------</option>
-                                                {% for edition in editions %}
-                                                <option value="{{ edition }}">{{ edition }}</option>
+                                                {% for annee in annees %}
+                                                <option value="{{ annee }}">{{ annee }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
@@ -124,8 +124,7 @@
                                     <div class="text-center">
                                         <br/>
                                         <button type="submit" class="btn btn-primary">Filtrer</button>
-                                        <button type="reset" class="btn btn-outline-primary">Réinitialiser</button>
-                                    </div>
+                                   </div>
                                 </form><!-- Vertical Form -->
                   
                               </div>

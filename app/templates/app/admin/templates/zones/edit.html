@@ -1,7 +1,7 @@
 {% extends 'app/admin/layouts/default.html' %}
 {% block content %}
 {% load crispy_forms_tags %}
-{% load crispy_forms_fiel %}
+{% load crispy_forms_field %}
 <!--**********************************
             Content body start
         ***********************************-->
@@ -25,7 +25,7 @@
                             </div>
                             <div class="card-body">
                                 <!-- Vertical Form -->
-                                <form action="{% url 'zones_update' form.instance.pk %}" method="post">
+                                <form action="{% url 'zones_update' form.instance.pk %}" method="POST">
                                     {% csrf_token %}
                                   <div class="col-12">
                                     {{ form.nom|as_crispy_field }}
@@ -33,7 +33,6 @@
                                   <div class="text-center">
                                     <br/>
                                     <button type="submit" class="btn btn-primary">Valider</button>
-                                    <button type="reset" class="btn btn-outline-primary">Réinitialiser</button>
                                   </div>
                                 </form><!-- Vertical Form -->
                   
